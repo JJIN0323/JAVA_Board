@@ -21,10 +21,11 @@ public class BoardController {
         return "boardWrite"; // 어떤 html 페이지로 보낼지 알려주는거 (맵핑처럼 / 쓰면 안댐. 왜냐면, html 페이지랑 이름이 같아야함)
     }
 
-    @PostMapping("/board/writepro")
+    @PostMapping("/board/writePro")
     public String boardWritePro(Board board, Model model) { // 이렇게 쓰면 간단함
         boardService.boardWrite(board);
         model.addAttribute("message", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
         return "message"; // 여기에 값이 없기 때문에 오류 발생. 임시로 LIST 로 매꿔둠.
     }
 
@@ -42,9 +43,12 @@ public class BoardController {
 
     // 특정 게시글 삭제
     @GetMapping("/board/delete")
-    public String boardDelete (Integer id) {
+    public String boardDelete (Integer id, Model model) {
         boardService.boardDelete(id);
-        return "redirect:/board/list";
+        model.addAttribute("message", "글 삭제가 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        //return "redirect:/board/list";
+        return "message";
     }
 
     // 특정 게시글 수정
@@ -55,13 +59,15 @@ public class BoardController {
     }
 
     @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board) {
+    public String boardUpdate(@PathVariable("id") Integer id, Board board, Model model) {
         Board boardTemp = boardService.boardView(id); // 기존 내용
         boardTemp.setTitle(board.getTitle()); // 새로 입력한 내용 덮어씌우기
         boardTemp.setContent(board.getContent());
         boardService.boardWrite(boardTemp); ///받은데이터 값을 덮어 씌워줌.
         System.out.println("boardTemp : " + boardTemp);
-        return "redirect:/board/list";
+        model.addAttribute("message", "글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        return "message";
     }
 
     //    public String boardWritePro(String title, String content) { // 이렇게도 쓸 수는 있지만 많아지면 길어지니까

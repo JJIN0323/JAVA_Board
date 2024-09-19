@@ -3,25 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>DETAIL</title>
-    <style>
-        body {
-            width: 60vw;
-            text-align: center;
-            margin: 0 auto;
-        }
-        a, a:hover {
-            text-decoration: none;
-            border: 1px #434343;
-            background: #434343;
-            color: #fff;
-            padding: 0.3rem 0.3rem;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    <h2 th:text="${board.title}">제목</h2>
-    <p th:text="${board.content}">내용</p>
-    <a th:href="@{/board/modify/{id}(id=${board.id})}">MODIFY</a>
-    <a th:href="@{/board/delete(id=${board.id})}">DELETE</a>
+    <div class="wrap">
+        <h2 class="lead" th:text="${board.title}">제목</h2>
+        <p class="lead" th:text="${board.content}">내용</p>
+        <button class="btn btn-dark" th:href="@{/board/modify/{id}(id=${board.id})}">MODIFY</button>
+        <button class="btn btn-dark" th:href="@{/board/delete(id=${board.id})}">DELETE</button>
+    </div>
 </body>
 </html>

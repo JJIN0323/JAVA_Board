@@ -6,21 +6,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>NO</th>
-          <th>SUBJECT</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr class="lead" th:each="board : ${list}"> <!-- 리스트에 담긴걸 하나씩 뽑아줌 / 리스트에서 board 가 없어질 떄까지 반복해줌 -->
-        <td class="lead" th:text="${board.id}">1</td> <!-- board 안에 아이디를 하나씩 뽑아줌. -->
-        <td>
-            <a class="lead" th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="container">
+        <!--a class="button is-link" th:href="@{/board/write}">WRITE</a-->
+        <section class="section">
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>SUBJECT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}"> <!-- 리스트에 담긴걸 하나씩 뽑아줌 / 리스트에서 board 가 없어질 떄까지 반복해줌 -->
+                <td th:text="${board.id}">1</td> <!-- board 안에 아이디를 하나씩 뽑아줌. -->
+                <td>
+                    <a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">제목</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </section>
+    </div>
 </body>
 </html>

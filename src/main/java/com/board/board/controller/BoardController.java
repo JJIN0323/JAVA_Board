@@ -45,10 +45,10 @@ public class BoardController {
     @GetMapping("/board/delete")
     public String boardDelete (Integer id, Model model) {
         boardService.boardDelete(id);
-        model.addAttribute("message", "글 삭제가 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list");
-        //return "redirect:/board/list";
-        return "message";
+        //model.addAttribute("message", "글 삭제가 완료되었습니다.");
+        //model.addAttribute("searchUrl", "/board/list");
+        return "redirect:/board/list";
+        //return "message";
     }
 
     // 특정 게시글 수정
@@ -65,15 +65,10 @@ public class BoardController {
         boardTemp.setContent(board.getContent());
         boardService.boardWrite(boardTemp); ///받은데이터 값을 덮어 씌워줌.
         System.out.println("boardTemp : " + boardTemp);
-        model.addAttribute("message", "글 수정이 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list");
-        return "message";
+        //model.addAttribute("message", "글 수정이 완료되었습니다.");
+        //model.addAttribute("searchUrl", "/board/list");
+        //return "message";
+        return "redirect:/board/list";
     }
 
-    //    public String boardWritePro(String title, String content) { // 이렇게도 쓸 수는 있지만 많아지면 길어지니까
-    //
-    //        System.out.println("제목 : " + title);
-    //        System.out.println("내용 : " + content);
-    //        return "";
-    //    }
 }

@@ -6,12 +6,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-<div class="wrap">
-  <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
-    <input class="form-control" name="title" type="text" th:value="${board.title}">
-    <textarea class="form-control" name="content" th:text="${board.content}"></textarea>
-    <button class="btn btn-dark" type="submit">OK</button>
+<div class="container">
+  <section class="section">
+  <form class="control-radius" th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
+    <input class="input" name="title" type="text" th:value="${board.title}">
+    <hr>
+    <textarea class="textarea" name="content" th:text="${board.content}"></textarea>
+    <hr>
+    <button class="button is-link" type="submit">OK</button>
   </form>
+  </section>
 </div>
 </body>
 </html>

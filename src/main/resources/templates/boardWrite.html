@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    <div class="wrap">
-        <form class="contact-form" action="/board/writePro" method="post"><!-- 그냥 보여주기 식 주소 -->
-            <input class="form-control" name="title" type="text">
-            <textarea class="form-control" name="content"></textarea>
-            <button class="btn btn-dark" type="submit">OK</button>
+<div class="container">
+    <section class="section">
+        <form class="control-radius" action="/board/writePro" method="post"><!-- 그냥 보여주기 식 주소 -->
+            <input class="input" name="title" type="text">
+            <hr>
+            <textarea class="textarea" name="content"></textarea>
+            <hr>
+            <button class="button is-link" type="submit">OK</button>
         </form>
+        </section>
     </div>
 </body>
 </html>

@@ -9,6 +9,8 @@
 ######
 
 ##### 현재 진행률 2024년 9월 20일 기준으로 약 80% 정도-.
+##### src/main/resources/application.properties : MariaDB setting 필요.
+##### 현재 Port 9999 / Table name : board
 
 ###### - 2024.09.19 파일 업로드 (단, 이미지만 가능) 처리
 ###### - 2024.09.19 페이칭 처리

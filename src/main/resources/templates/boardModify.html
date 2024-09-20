@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"><!-- 타임리프 문법 사용가능 -->
+
 <head>
-  <meta charset="UTF-8">
-  <title>WRITE</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <meta charset="UTF-8">
+    <title>WRITE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <section class="section">
-            <form class="control-radius" th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
-                  <input class="input" name="title" type="text" th:value="${board.title}">
-                  <input class="input" type="file" name="file">
-                  <hr>
-                  <textarea class="textarea" name="content" th:text="${board.content}"></textarea>
-                  <hr>
-                  <div class="column">
-                    <button class="button is-link is-fullwidth" type="submit">OK</button>
-                  </div>
-            </form>
-        </section>
-    </div>
+<div class="container">
+    <section class="section">
+        <form class="control-radius" th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
+            <input class="input" name="title" type="text" th:value="${board.title}">
+            <input class="input" type="file" name="file">
+            <hr>
+            <textarea class="textarea" name="content" th:text="${board.content}"></textarea>
+            <hr>
+            <div class="column">
+                <button class="button is-link is-fullwidth" type="submit">OK</button>
+            </div>
+        </form>
+    </section>
+</div>
 </body>
+
 </html>

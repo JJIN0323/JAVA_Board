@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"><!-- 타임리프 문법 사용가능 -->
+
 <head>
     <meta charset="UTF-8">
     <title>LIST</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <section class="section">
+<div class="container">
+    <section class="section">
         <table class="table is-fullwidth">
             <thead>
             <tr>
@@ -24,8 +26,9 @@
             </tr>
             </tbody>
         </table>
-            <a class="button is-link column" th:href="@{/board/write}">WRITE</a>
-        </section>
-    </div>
+        <a class="button is-link column" th:href="@{/board/write}">WRITE</a>
+    </section>
+</div>
 </body>
+
 </html>

@@ -28,6 +28,16 @@
         </table>
         <a class="button is-link column" th:href="@{/board/write}">WRITE</a>
     </section>
+    <div class="bd-snippet-preview">
+        <nav class="pagination is-centered" role="navigation">
+            <ul th:block th:each="page : ${#numbers.sequence(startPage, endPage)}" class="pagination-list">
+                <li>
+                    <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page -1})}" th:text="${page}" class="pagination-link">1</a></li>
+                <li style="font-weight: bold">
+                    <a th:if="${page == nowPage}" th:text="${page}" class="pagination-link">86</a></li>
+            </ul>
+        </nav>
+    </div>
 </div>
 </body>
 

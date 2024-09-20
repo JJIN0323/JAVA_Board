@@ -3,6 +3,7 @@ package com.board.board.controller;
 import com.board.board.entity.Board;
 import com.board.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -35,7 +36,14 @@ public class BoardController {
 
     @GetMapping("/board/list")
     public String boardList (Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) { // 데이터를 받아서 보여주기 위함.
+        Page<Board> list = boardService.boardList(pageable);
+        int nowPage = list.getPageable().getPageNumber() + 1; // 0부터 시작하기 때문에 1을 더해줘야함.
+        int startPage = Math.max(nowPage - 4, 1); // -3을 방지하기 위한 math 메서드 사용.
+        int endPage = Math.min(nowPage + 5, list.getTotalPages()); // 최대 페이지 갯수를 찾기 위해 total 로 잡아줌.
         model.addAttribute("list", boardService.boardList(pageable)); // 리스트라는 이름으로 보내는데, 보드 리스트에 반환할게.
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         return "boardList"; // 여기 값 HTML 이름과 동일해야함!!!!! 매우 중요. 그리고 오타 주의!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 

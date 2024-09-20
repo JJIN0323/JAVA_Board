@@ -14,9 +14,13 @@
             <hr>
             <img th:src="@{${board.filepath}}" th:text="${board.title}" />
             <hr>
-            <div class="columns is-mobile is-centered">
-                <a th:href="@{/board/modify/{id}(id=${board.id})}" class="column is-half button is-link">MODIFY</a>
-                <a th:href="@{/board/delete(id=${board.id})}" class="column is-half button is-link">DELETE</a>
+            <div class="grid">
+                <div class="cell">
+                <a th:href="@{/board/modify/{id}(id=${board.id})}" class="column button is-link">MODIFY</a>
+                </div>
+                <div class="cell">
+                <a th:href="@{/board/delete(id=${board.id})}" class="column button is-link">DELETE</a>
+            </div>
             </div>
         </section>
     </div>

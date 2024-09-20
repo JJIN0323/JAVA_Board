@@ -3,11 +3,15 @@ package com.board.board.controller;
 import com.board.board.entity.Board;
 import com.board.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -22,16 +26,16 @@ public class BoardController {
     }
 
     @PostMapping("/board/writePro")
-    public String boardWritePro(Board board, Model model) { // 이렇게 쓰면 간단함
-        boardService.boardWrite(board);
+    public String boardWritePro(Board board, Model model, MultipartFile file) throws Exception { // 이렇게 쓰면 간단함 + 예외처리 해줘야함. boardWrite 가 에러 나서.
+        boardService.boardWrite(board, file);
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
         return "message"; // 여기에 값이 없기 때문에 오류 발생. 임시로 LIST 로 매꿔둠.
     }
 
     @GetMapping("/board/list")
-    public String boardList (Model model) { // 데이터를 받아서 보여주기 위함.
-        model.addAttribute("list", boardService.boardList()); // 리스트라는 이름으로 보내는데, 보드 리스트에 반환할게.
+    public String boardList (Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) { // 데이터를 받아서 보여주기 위함.
+        model.addAttribute("list", boardService.boardList(pageable)); // 리스트라는 이름으로 보내는데, 보드 리스트에 반환할게.
         return "boardList"; // 여기 값 HTML 이름과 동일해야함!!!!! 매우 중요. 그리고 오타 주의!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     }
 
@@ -45,10 +49,10 @@ public class BoardController {
     @GetMapping("/board/delete")
     public String boardDelete (Integer id, Model model) {
         boardService.boardDelete(id);
-        //model.addAttribute("message", "글 삭제가 완료되었습니다.");
-        //model.addAttribute("searchUrl", "/board/list");
-        return "redirect:/board/list";
-        //return "message";
+        model.addAttribute("message", "글 삭제가 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        //return "redirect:/board/list";
+        return "message";
     }
 
     // 특정 게시글 수정
@@ -59,16 +63,16 @@ public class BoardController {
     }
 
     @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board, Model model) {
+    public String boardUpdate(@PathVariable("id") Integer id, Board board, Model model, MultipartFile file) throws Exception {
         Board boardTemp = boardService.boardView(id); // 기존 내용
         boardTemp.setTitle(board.getTitle()); // 새로 입력한 내용 덮어씌우기
         boardTemp.setContent(board.getContent());
-        boardService.boardWrite(boardTemp); ///받은데이터 값을 덮어 씌워줌.
+        boardService.boardWrite(boardTemp, file); ///받은데이터 값을 덮어 씌워줌.
         System.out.println("boardTemp : " + boardTemp);
-        //model.addAttribute("message", "글 수정이 완료되었습니다.");
-        //model.addAttribute("searchUrl", "/board/list");
-        //return "message";
-        return "redirect:/board/list";
+        model.addAttribute("message", "글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+        return "message";
+        //return "redirect:/board/list";
     }
 
 }

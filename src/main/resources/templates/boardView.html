@@ -12,8 +12,12 @@
             <hr>
             <p class="subtitle" th:text="${board.content}">내용</p>
             <hr>
-            <a th:href="@{/board/modify/{id}(id=${board.id})}" class="button is-link">MODIFY</a>
-            <a th:href="@{/board/delete(id=${board.id})}" class="button is-link">DELETE</a>
+            <img th:src="@{${board.filepath}}" th:text="${board.title}" />
+            <hr>
+            <div class="columns is-mobile is-centered">
+                <a th:href="@{/board/modify/{id}(id=${board.id})}" class="column is-half button is-link">MODIFY</a>
+                <a th:href="@{/board/delete(id=${board.id})}" class="column is-half button is-link">DELETE</a>
+            </div>
         </section>
     </div>
 </body>

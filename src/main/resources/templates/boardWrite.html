@@ -8,8 +8,9 @@
 <body>
 <div class="container">
     <section class="section">
-        <form class="control-radius" action="/board/writePro" method="post"><!-- 그냥 보여주기 식 주소 -->
+        <form class="control-radius" action="/board/writePro" method="post" enctype="multipart/form-data"><!-- 그냥 보여주기 식 주소 -->
             <input class="input" name="title" type="text">
+            <input class="input" type="file" name="file">
             <hr>
             <textarea class="textarea" name="content"></textarea>
             <hr>

@@ -8,7 +8,7 @@
 
 ######
 
-##### 현재 진행률 2024년 9월 20일 기준으로 약 80% 정도-.
+##### :blue_heart: 현재 진행률 2024년 10월 9일 기준 (완성)
 ##### src/main/resources/application.properties : MariaDB setting 필요.
 ##### 현재 Port 9999 / Table name : board
 
